@@ -1,5 +1,5 @@
 library(shiny)
-
+library(plotly)
 
 # ui <- navbarPage(
 #   "My App",
@@ -23,28 +23,43 @@ library(shiny)
 #   )
 # )
 
-ui <- fluidPage(
-  titlePanel("Shiny Elements Example"),
-  sidebarLayout(
-    sidebarPanel(
-      numericInput("numInput", "Enter a number:", value = 0),
-      sliderInput("numSlider", "Select a value:", min = 0, max = 100, value = 50),
-      actionButton("actionBtn", "Click Me"),
-      checkboxInput("singleCheckbox", "Check me"),
-      checkboxGroupInput("multiCheckbox", "Select options:", 
-                         choices = c("Option 1", "Option 2", "Option 3")),
-      radioButtons("radioBtn", "Choose one:", 
-                   choices = c("Option A", "Option B", "Option C"), selected = NULL),
-      selectInput("dropdownMenu", "Choose one:", 
-                  choices = c("Option 1", "Option 2", "Option 3"), selected = NULL),
-      textInput("txtInput", "Enter text:")
-    ),
-    mainPanel(
-    )
-  )
+# ui <- fluidPage(
+#   titlePanel("Shiny Elements Example"),
+#   sidebarLayout(
+#     sidebarPanel(
+#       numericInput("numInput", "Enter a number:", value = 0),
+#       sliderInput("numSlider", "Select a value:", min = 0, max = 100, value = 50),
+#       actionButton("actionBtn", "Click Me"),
+#       checkboxInput("singleCheckbox", "Check me"),
+#       checkboxGroupInput("multiCheckbox", "Select options:", 
+#                          choices = c("Option 1", "Option 2", "Option 3")),
+#       radioButtons("radioBtn", "Choose one:", 
+#                    choices = c("Option A", "Option B", "Option C"), selected = NULL),
+#       selectInput("dropdownMenu", "Choose one:", 
+#                   choices = c("Option 1", "Option 2", "Option 3"), selected = NULL),
+#       textInput("txtInput", "Enter text:")
+#     ),
+#     mainPanel(
+#     )
+#   )
+# )
+# 
+# server <- function(input, output){
+# }
+
+
+ui <-     fluidPage(
+  sliderInput("val","select line value",
+              0.1,5,value=1),
+  plotlyOutput("plotly"),
 )
 
-server <- function(input, output){
+# Server
+server <- function(input, output) {
+  output$plotly <- renderPlotly({
+    plot_ly(data = iris, x = ~Sepal.Length, y = ~Sepal.Width, color = ~Species, type = "scatter", mode = "markers") %>%
+    add_lines(y = ~input$val)
+  })
 }
 
 shinyApp(ui, server)
