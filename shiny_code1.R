@@ -1,29 +1,18 @@
 library(shiny)
 library(plotly)
+library(DT)
 
-# ui <- fluidPage(navbarPage(
-#   "My App",
-#   tabPanel("Tab 1",
-#            # Content for Tab 1
-#   ),
-#   tabPanel("Tab 2",
-#            # Content for Tab 2
-#   )
-# )
-# )
+#If you already have your future app.R open, type shinyapp then press Shift + Tab to insert the Shiny app snippet
 
+##1
+# library(shiny)
 # ui <- fluidPage(
-#   titlePanel("My Shiny App"),
-#   sidebarLayout(
-#     sidebarPanel(
-#       # Sidebar content
-#     ),
-#     mainPanel(
-#       # Main content
-#     )
-#   )
 # )
+# server <- function(input, output, session) {
+# }
+# shinyApp(ui, server)
 
+##2
 # ui <- fluidPage(
 #   titlePanel("Shiny Elements Example"),
 #   sidebarLayout(
@@ -62,36 +51,94 @@ library(plotly)
 # server <- function(input, output){
 # }
 
-# 
-# ui <-     fluidPage(
-#   sliderInput("val","select line value",
-#               0.1,5,value=1),
-#   plotlyOutput("plotly"),
+##3
+# ui <- fluidPage(
+#   textOutput("text"),
+#   verbatimTextOutput("code"),# code king of output
+#   tableOutput("static"),
+#   dataTableOutput("dynamic"),
+#   plotOutput("plot", width = "400px"),
+#   plotlyOutput("plotly")
 # )
 # 
-# # Server
-# server <- function(input, output) {
-#   output$plotly <- renderPlotly({
-#     plot_ly(data = iris, x = ~Sepal.Length, y = ~Sepal.Width, color = ~Species, type = "scatter", mode = "markers") %>%
-#     add_lines(y = ~input$val)
+# 
+# server <- function(input, output, session) {
+#   output$text <- renderText({ 
+#     "Hello friend!" 
 #   })
+#   output$code <- renderPrint({ 
+#     summary(1:10) 
+#   })
+#   output$static <- renderTable(head(mtcars))
+#   output$dynamic <- renderDT(mtcars, options = list(pageLength = 5))
+#   output$plotly <- renderPlotly({
+#     plot_ly(data = iris, x = ~Sepal.Length, y = ~Sepal.Width, color = ~Species, type = "scatter", mode = "markers")
+#   })
+#   output$plot <- renderPlot(plot(1:5), res = 96)
 # }
+
+# for timer to wait for execution: server timer <- reactiveTimer(500), in render function use timer()
+# to execute only after click: ui:actionButton("simulate", "Simulate!"), server in render use input$simulate
+
 
 # ui <- fluidPage(
-#   sliderInput("obs", "Number of observations", 0, 1000, 500),
-#   actionButton("goButton", "Go!", class = "btn-success"),
-#   plotOutput("distPlot")
+#   titlePanel("My Shiny App"),
+#   sidebarLayout(
+#     sidebarPanel(
+#       # Sidebar content
+#     ),
+#     mainPanel(
+#             tabsetPanel(
+#                 tabPanel("panel 1", "one")
 # )
-# server <- function(input, output) {
-#   output$distPlot <- renderPlot({
-#     # Take a dependency on input$goButton. This will run once initially,
-#     # because the value changes from NULL to 0.
-#     input$goButton
-#     # Use isolate() to avoid dependency on input$obs
-#     dist <- isolate(rnorm(input$obs))
-#     hist(dist)
+#     )
+#   )
+# )
+
+#fixedPage() works like fluidPage() but has a fixed maximum width, which stops your apps from becoming
+#unreasonably wide on bigger screens. fillPage() fills the full height of the browser
+
+# ui <- fluidPage(
+#   navlistPanel(
+#     id = "tabset",
+#     "Heading 1",
+#     tabPanel("panel 1", "Panel one contents"),
+#     "Heading 2",
+#     tabPanel("panel 2", "Panel two contents"),
+#     tabPanel("panel 3", "Panel three contents")
+#   )
+# )
+
+#theme = bslib::bs_theme(bootswatch = "darkly")  add this code to 3rd code to demonstrate add in UI
+# add this in server thematic::thematic_shiny()
+
+
+# ui <- fluidPage(
+#   htmlOutput("source")
+#   # imageOutput("photo")
+# )
+# server <- function(input, output, session) {
+#   # output$photo <- renderImage({
+#   #   list(
+#   #     src = file.path("cheatsheet.img"),
+#   #     contentType = "image/jpeg",
+#   #     width = 500,
+#   #     height = 650
+#   #   )
+#   # }, deleteFile = FALSE)
+#   
+#   output$source <- renderUI({
+#     HTML("https://www.bing.com/images/search?q=dog+image&id=EE0394FCAA590A90CD17B2422EB97F0B59A9F5F6&FORM=IACFIR")
 #   })
 # }
 
+#req() in server to show the required entry fields
+# ui <- fluidPage(
+#   fileInput("upload", NULL, buttonLabel = "Upload...", multiple = TRUE),
+#   tableOutput("files")
+# )
+# server <- function(input, output, session) {
+#   output$files <- renderTable(input$upload)
+# }
 
 shinyApp(ui, server)
