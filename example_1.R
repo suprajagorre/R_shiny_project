@@ -1,41 +1,32 @@
 library(shiny)
+library(shinythemes)
+library(DT)
 
-# ui <- fluidPage(
-#   fileInput("upload", NULL, accept = c(".csv", ".tsv")),
-#   numericInput("n", "Rows", value = 5, min = 1, step = 1),
-#   tableOutput("head")
-# )
-# 
-# server <- function(input, output, session) {
-#   data <- reactive({
-#     req(input$upload)
-#     
-#     ext <- tools::file_ext(input$upload$name)
-#     switch(ext,
-#            csv = vroom::vroom(input$upload$datapath, delim = ","),
-#            tsv = vroom::vroom(input$upload$datapath, delim = "\t"),
-#            validate("Invalid file; Please upload a .csv or .tsv file")
-#     )
-#   })
-#   
-#   output$head <- renderTable({
-#     head(data(), input$n)
-#   })
-# }
-
-ui <- fluidPage(
-  fileInput("upload", "Upload csv file", accept = ".csv"),
-  tableOutput("head")
-)
+ui <- fluidPage(theme= shinytheme("united"),
+  navbarPage(
+    "My Shiny App",
+    tabPanel("tab 1",
+      sidebarPanel(
+        fileInput("upload", "Upload csv file", accept = ".csv")
+      ),
+      mainPanel(
+        tableOutput("head")
+        # dataTableOutput("head")
+      )
+    )
+))
 
 server <- function(input, output, session) {
   data <- reactive({
     req(input$upload)
-    csv = vroom::vroom(input$upload$datapath, delim = ",")
+    read.csv(input$upload$datapath)
   })
   
   output$head <- renderTable({
     head(data(), 10)
   })
+  
+  # output$head <- renderDT(data(), options = list(pageLength = 5))
+
 }
 shinyApp(ui, server)

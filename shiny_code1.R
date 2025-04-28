@@ -41,7 +41,8 @@ library(DT)
 #       textInput("txtInput", "Enter text:"),
 #       textAreaInput("story", "Tell me about yourself", rows = 3),
 #       dateInput("dob", "When were you born?"),
-#       dateRangeInput("holiday", "When do you want to go on vacation next?")
+#       dateRangeInput("holiday", "When do you want to go on vacation next?"),
+#       fileInput("upload", "Upload csv file", accept = ".csv")
 #     ),
 #     mainPanel(
 #     )
