@@ -1,6 +1,6 @@
 library(shiny)
 library(shinythemes)
-library(ggplot2)
+library(plotly)
 
 ui <- fluidPage(theme= shinytheme("united"),
                 navbarPage(
@@ -18,7 +18,7 @@ ui <- fluidPage(theme= shinytheme("united"),
                              selectInput("x", "X", choices = NULL),
                              selectInput("y", "Y", choices = NULL),
                              selectInput("color", "color", choices = NULL),
-                             actionButton("simulate", "plot")
+                             actionButton("simulate", "plot",class = "btn-success")
                            ),
                            mainPanel(
                              plotlyOutput("plot")
@@ -45,8 +45,8 @@ server <- function(input, output, session) {
   
 
   output$plot <- renderPlotly({
-    input$simulate
+    if(input$simulate>0){
       plot_ly(data = data(), x = ~get(input$x), y = ~get(input$y), color = ~get(input$color), type = "scatter", mode = "markers")
-    })
+    }})
 }
 shinyApp(ui, server)

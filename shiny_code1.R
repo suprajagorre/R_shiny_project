@@ -55,7 +55,7 @@ library(DT)
 ##3
 # ui <- fluidPage(
 #   textOutput("text"),
-#   verbatimTextOutput("code"),# code king of output
+#   verbatimTextOutput("code"),
 #   tableOutput("static"),
 #   dataTableOutput("dynamic"),
 #   plotOutput("plot", width = "400px"),
