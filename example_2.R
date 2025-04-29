@@ -46,7 +46,12 @@ server <- function(input, output, session) {
 
   output$plot <- renderPlotly({
     if(input$simulate>0){
-      plot_ly(data = data(), x = ~get(input$x), y = ~get(input$y), color = ~get(input$color), type = "scatter", mode = "markers")
+      plot_ly(data = data(), x = ~get(input$x), y = ~get(input$y), color = ~get(input$color), type = "scatter", mode = "markers")%>%
+        layout(
+          title = "Customized Scatter Plot",
+          xaxis = list(title = input$x),
+          yaxis = list(title = input$y)
+        )
     }})
 }
 shinyApp(ui, server)
