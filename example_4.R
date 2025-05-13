@@ -3,6 +3,7 @@ library(formatters)
 library(gt)
 library(tidyverse)
 library(rlistings)
+library(DT)
 
 ui <- fluidPage(theme= shinytheme("united"),
                 navbarPage(
