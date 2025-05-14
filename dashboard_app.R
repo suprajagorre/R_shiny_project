@@ -6,9 +6,8 @@ library(rlistings)
 library(shinythemes)
 library(DT)
 
-ui <- navbarPage(theme= shinytheme("united"),
-                 titlePanel("MS123 Analysis"),
-                 tabPanel("Data",
+ui <- navbarPage(theme= shinytheme("united"),"MS123 Analysis",
+                     tabPanel("Data",
                             mainPanel(
                               tabsetPanel(
                                 tabPanel("Subjects data",
@@ -60,27 +59,6 @@ ui <- navbarPage(theme= shinytheme("united"),
                           )
                  )
                  )
-
-# ui <- fluidPage(theme= shinytheme("united"),
-#                 navbarPage(
-#                   "My Shiny App",
-#                   tabPanel("Data",
-#                            mainPanel(
-#                              dataTableOutput("head")
-#                            )
-#                   ),
-#                   tabPanel("Listing",
-#                            mainPanel(
-#                              verbatimTextOutput("code"),
-#                              width = 12
-#                            )
-#                   ),
-#                   tabPanel("Listing2",
-#                            mainPanel(
-#                              gt_output("code1")
-#                            )
-#                   )
-#                 ))
 
 server <- function(input, output, session) {
   data <- reactive({
