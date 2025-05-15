@@ -27,6 +27,7 @@ server <- function(input, output, session) {
   })
   
   # output$head <- renderDT(data(), options = list(pageLength = 5))
+  # output$head <- renderDT(data(), options = list(pageLength = 5))
 
 }
 shinyApp(ui, server)
