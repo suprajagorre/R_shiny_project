@@ -2,12 +2,13 @@ library(shiny)
 library(formatters)
 library(DT)
 library(shinythemes)
+library(dplyr)
 
 ui <- navbarPage(theme= shinytheme("united"), "MSx123",
                  tabPanel("Data",                           sidebarPanel(
                    selectInput("usubjid", "USUBJID", choices = NULL),
-                   selectInput("arm", "ARM", choices = NULL),
-                   selectInput("sex", "SEX", choices = NULL),
+                   # selectInput("arm", "ARM", choices = NULL),
+                   # selectInput("sex", "SEX", choices = NULL),
                    actionButton("simulate", "Submit",class = "btn-success")
                  ),
                           mainPanel(
@@ -15,11 +16,11 @@ ui <- navbarPage(theme= shinytheme("united"), "MSx123",
                               tabPanel("Subjects data",
                                        mainPanel(
                                          dataTableOutput("adsl")
-                                       ))#,
-                              # tabPanel("Adverse Events",
-                              #          mainPanel(
-                              #            dataTableOutput("ae")
-                              #          ))
+                                       )),
+                              tabPanel("Adverse Events",
+                                       mainPanel(
+                                         dataTableOutput("ae")
+                                       ))
                             )
                           )
                  ))
@@ -33,7 +34,7 @@ observeEvent(ex_adsl, {
   
 output$adsl <- renderDT({
   if(input$simulate>0){
-    adsl <- ex_adsl %>% filter("USUBJID"==input$usubjid)
+    adsl <- ex_adsl %>% filter(USUBJID==input$usubjid)
     adsl
     }else{ex_adsl}})
 }
