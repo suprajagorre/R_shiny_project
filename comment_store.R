@@ -8,7 +8,9 @@ ui = fluidPage(
                           selected='',
                           multiple=TRUE)),
     column(4, textInput('comment',"Add comment",value = "", width = NULL,placeholder = "comment")),
-    column(2, actionButton("button","Submit"))
+    column(2, actionButton("button","Submit")),
+    # Button
+    column(7, downloadButton("downloadData", "Download"))
   ),
   fluidRow (
     column(12, dataTableOutput('data') ) 
@@ -58,6 +60,16 @@ server <- function(input, output, session) {
     data.frame(dataset="ADSL",Comment="example comment") 
   }
   })
+  
+  # Downloadable csv of selected dataset ----
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste("comments", ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(df_current(), file, row.names = FALSE)
+    }
+  )
 }
 
 
