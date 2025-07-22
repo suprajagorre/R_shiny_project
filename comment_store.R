@@ -1,0 +1,64 @@
+library(shiny)
+library(DT)
+
+
+ui = fluidPage(
+  fluidRow(
+    column(2, selectInput('dataset','Select dataset', choices = c("ADSL","ADAE","ADLB"),
+                          selected='',
+                          multiple=TRUE)),
+    column(4, textInput('comment',"Add comment",value = "", width = NULL,placeholder = "comment")),
+    column(2, actionButton("button","Submit"))
+  ),
+  fluidRow (
+    column(12, dataTableOutput('data') ) 
+  )           
+)
+
+server <- function(input, output, session) {
+
+  df_comments <- reactiveVal({
+    data.frame(
+      dataset = character(0), 
+      Comment = character(0)
+    )
+  })
+  dat = data.frame(dataset="ADSL",Comment="example comment") 
+  ## reactive object df
+  df_current <- reactive({
+    
+    ## reactivity that df depends on
+    ## currently df = dat does not change
+    df <- dat
+    
+    ## merge with current comments
+    if(nrow(df_comments()) > 0)
+      df <- rbind(df, df_comments())
+    
+    return(df)
+    
+  })
+  
+  observeEvent(input$button, {
+    
+    req(input$dataset)
+    
+    ## update df_comments by adding comments
+    df_comments_new <- rbind(df_comments(), 
+                             data.frame(dataset = input$dataset, Comment = input$comment)
+    )
+    df_comments(df_comments_new)
+    
+  })
+  
+  output$data <- renderDataTable({
+    if(input$button>0){
+    df_current()
+  }else{
+    data.frame(dataset="ADSL",Comment="example comment") 
+  }
+  })
+}
+
+
+shinyApp(ui, server)
