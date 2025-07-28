@@ -69,13 +69,7 @@ output$plot <- renderPlotly({
     )
 }})
 
-comment_data <- data.frame(
-  name = ,
-  comments = FALSE
-)
 
-sheet_append(SHEET_ID, comment_data, "demographics")
-read_sheet(SHEET_ID, "demographics")
 }
 
 shinyApp(ui, server)
