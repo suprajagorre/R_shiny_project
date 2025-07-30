@@ -39,16 +39,18 @@ text text
 ```
 
 ### Footnote
-R is awesome.[^1]
+How is R?.[^*]
 
-[^1]: R is awesome.
+[^*]: R is awesome.
 
 ### adding links
 [EVA](https://eva.merckgroup.com/en-us#/)
 
 ### highlighted functions in text
 In the text `mutate` 
-if you want to use double stars to the text without making them bold \*\*function.\*\* \*function.\*  
+if you want to use double stars to the text without making them bold </br>
+text
+\*\*function.\*\* \*function.\*  
 
 ### adding image
 ```{r}
