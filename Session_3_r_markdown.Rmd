@@ -1,0 +1,71 @@
+---
+output: 
+  html_document:
+    #toc: true
+    #df_print: paged
+    #number_sections: true
+#output: pdf_document
+#output: beamer_presentation
+---
+
+YAML Header: Controls certain output settings that apply to the entire document.  
+Code Chunk: Includes code to run, and code-related options.  
+Body Text: For communicating results and findings to the targeted audience.  
+Code to Generate a Table: Outputs a table with minimal formatting like you would see in the console.  
+Section Header: Specified with ##.  
+Code to Generate a Plot: Outputs a plot. Here, the code used to generate the plot will not be included because the parameter echo=FALSE is specified. This is a chunk option. We’ll cover chunk options soon!  
+
+# .Rmd , .md
+## Header 2 {.tabset}
+
+*italic words*  
+**bold**  
+
+### How to add bullet points
+1. first point.  
+1. second point.  
+
+
+- first point  
+    - first point  
+    - second point 
+- second point  
+
+### Highlighting test in block
+
+```
+blocktext  
+text text
+```
+
+### Footnote
+R is awesome.[^1]
+
+[^1]: R is awesome.
+
+### adding links
+[EVA](https://eva.merckgroup.com/en-us#/)
+
+### highlighted functions in text
+In the text `mutate` 
+if you want to use double stars to the text without making them bold \*\*function.\*\* \*function.\*  
+
+### adding image
+```{r}
+library(knitr)
+#include_graphics("img.jpg")
+```
+
+### How to write R code
+```{r}
+x <- 2
+y <- x + 2
+```
+
+### Inline code
+result is `r y`
+
+### data printing
+```{r echo=FALSE}
+mtcars
+```
