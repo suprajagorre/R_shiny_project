@@ -58,11 +58,14 @@ library(knitr)
 #include_graphics("img.jpg")
 ```
 
-### How to write R code
+### How to write R code {.tabset}
+
+#### 1st subheader
 ```{r}
 x <- 2
 y <- x + 2
 ```
+#### 1st subheader
 
 ### Inline code
 result is `r y`
