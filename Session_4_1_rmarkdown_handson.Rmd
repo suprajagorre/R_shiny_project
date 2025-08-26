@@ -1,0 +1,21 @@
+---
+title: "R markdown"
+output:
+  html_document:
+    theme: united
+    toc: true
+    number_sections: false
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+# M1234 Analysis
+Study: 12345  
+Indication: Advanced Solid tumor  
+Study start date: 08^th^ Nov 2024  
+Cutoff date: 02^nd^ Sep 2025~DSUR~  
+~~AE special interest information~~
+
+---- This is the image ----  
+![Caption](image1.jpg)
