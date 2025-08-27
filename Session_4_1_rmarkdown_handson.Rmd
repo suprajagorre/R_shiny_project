@@ -116,3 +116,5 @@ for (subject in adsl$USUBJID[1:5]){
    cat('\n') 
 }
 ```
+
+[cheatsheets](https://posit.co/resources/cheatsheets/)
