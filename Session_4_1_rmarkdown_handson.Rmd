@@ -9,13 +9,97 @@ output:
       collapsed: false
       smooth_scroll: false
 ---
+```
+eval: Whether to evaluate a code chunk.
 
+echo: Whether to echo the source code in the output document (someone may not prefer reading your smart source code but only results).
+
+results: When set to 'hide', text output will be hidden; when set to 'asis', text output is written “as-is,” e.g., you can write out raw Markdown text from R code (like cat('**Markdown** is cool.\n')). By default, text output will be wrapped in verbatim elements (typically plain code blocks).
+
+collapse: Whether to merge text output and source code into a single code block in the output. This is mostly cosmetic: collapse = TRUE makes the output more compact, since the R source code and its text output are displayed in a single output block. The default collapse = FALSE means R expressions and their text output are separated into different blocks.
+
+warning, message, and error: Whether to show warnings, messages, and errors in the output document. Note that if you set error = FALSE, rmarkdown::render() will halt on error in a code chunk, and the error will be displayed in the R console. Similarly, when warning = FALSE or message = FALSE, these messages will be shown in the R console.
+
+include: Whether to include anything from a code chunk in the output document. When include = FALSE, this whole code chunk is excluded in the output, but note that it will still be evaluated if eval = TRUE. When you are trying to set echo = FALSE, results = 'hide', warning = FALSE, and message = FALSE, chances are you simply mean a single option include = FALSE instead of suppressing different types of text output individually.
+
+cache: Whether to enable caching. If caching is enabled, the same code chunk will not be evaluated the next time the document is compiled (if the code chunk was not modified), which can save you time. However, I want to honestly remind you of the two hard problems in computer science (via Phil Karlton): naming things, and cache invalidation. Caching can be handy but also tricky sometimes.
+
+fig.width and fig.height: The (graphical device) size of R plots in inches. R plots in code chunks are first recorded via a graphical device in knitr, and then written out to files. You can also specify the two options together in a single chunk option fig.dim, e.g., fig.dim = c(6, 4) means fig.width = 6 and fig.height = 4.
+
+out.width and out.height: The output size of R plots in the output document. These options may scale images. You can use percentages, e.g., out.width = '80%' means 80% of the page width.
+
+fig.align: The alignment of plots. It can be 'left', 'center', or 'right'.
+
+fig.cap: The figure caption.
+```
+
+```{r echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(formatters)
+library(plotly)
+library(pharmaverseadam)
+library(DT)
+```
 # M1234 Analysis
-Study: 12345  
-Indication: Advanced Solid tumor  
-Study start date: 08^th^ Nov 2024  
-Cutoff date: 02^nd^ Sep 2025~DSUR~  
+
+## Information
+**Study**: 12345  
+**Indication**: Advanced Solid tumor  
+**Study start date**: 08^th^ Nov 2024  
+**Cutoff date**: 02^nd^ Sep 2025~DSUR~  
 ~~AE special interest information~~
 
+
+<!-- When you knit this R Markdown file, the text will appear centered in the output document. -->
+## *Image loading*
+<div style="text-align: center;">
 ---- This is the image ----  
-![Caption](image1.jpg)
+![Fig Image of solid tumor.](image1.jpg){width=50% height=50% }
+</div>
+
+```{r echo=FALSE, fig.cap = "Fig Image of solid tumor"}
+knitr::include_graphics("image1.jpg")
+```
+
+
+## In line coding
+```{r echo=FALSE}
+ae_info <- adae %>% count(AETERM) %>%
+  arrange(n) %>% slice(0:5)
+```
+Adverse events that occurred to more than 5 subjects are <u> `r ae_info$AETERM` </u>
+
+## Dataset {.tabset}
+### interactive 
+To learn about more extensions 
+[Click here 😊](https://rstudio.github.io/DT/extensions.html)
+```{r echo=FALSE}
+datatable(data.frame(adsl))
+  # datatable(data.frame(adsl), extensions = 'FixedColumns',
+  # options = list(
+  #   dom = 't',
+  #   pageLength = 5,
+  #   scrollX = TRUE,
+  #   fixedColumns = TRUE
+  # ))
+```
+### Static 
+```{r echo=FALSE}
+kable(head(adsl)) %>% kable_styling("striped") %>% scroll_box(width = "100%")
+```
+
+## Plots
+```{r echo=FALSE,warning=FALSE, message=FALSE}
+adlb <- ex_adlb %>% filter(PARAMCD == "ALT")  # Filter all data for ALT parameter
+plot_ly(data = adlb, x = ~ADY, y = ~AVAL, color = ~USUBJID, type = "scatter", mode = "lines") %>%
+        add_lines() %>%
+        layout(
+          title = "Lab Plot",  # Title of the plot
+          xaxis = list(title = "Time since treatment"),  # X-axis label
+          yaxis = list(title = "ALT"),  # Y-axis label
+          height = 800, width = 1200  # Dimensions of the plot
+        )
+```
