@@ -1,0 +1,92 @@
+---
+title: "R markdown"
+output:
+  html_document:
+    theme: united
+    toc: true
+    number_sections: false
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+```
+eval: Whether to evaluate a code chunk.
+```
+```{r echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(formatters)
+library(plotly)
+library(pharmaverseadam)
+library(DT)
+```
+<!-- \# M1234 Analysis -->
+
+# M1234 Analysis
+
+## Information
+**Study**: 12345  
+**Indication**: Advanced Solid tumor
+
+## *Image loading*
+
+<div style="text-align: center;">
+---- This is the image ----  
+![Fig](image1.jpg)
+</div>
+
+```{r echo=FALSE, fig.cap = "Fig Image of solid tumor"}
+knitr::include_graphics("image1.jpg")
+```
+
+## In line coding
+```{r echo=FALSE}
+ae_info <- adae %>% count(AETERM) %>%
+  arrange(n) %>% slice(0:5)
+```
+Adverse events <u> `r ae_info$AETERM` </u>
+
+## Dataset {.tabset}
+### interactive
+To learn about more extensions 
+[Click here 😊](https://rstudio.github.io/DT/extensions.html)
+```{r echo=FALSE}
+# datatable(data.frame(adsl))
+datatable(data.frame(adsl), extensions = 'FixedColumns',
+  options = list(
+    dom = 't',
+    pageLength = 5,
+    scrollX = TRUE,
+    fixedColumns = TRUE
+  ))
+```
+### Static 
+```{r echo=FALSE}
+kable(head(adsl))
+```
+
+## Plots
+```{r echo=FALSE,warning=FALSE, message=FALSE}
+adlb <- ex_adlb %>% filter(PARAMCD == "ALT")  # Filter all data for ALT parameter
+plot_ly(data = adlb, x = ~ADY, y = ~AVAL, color = ~USUBJID, type = "scatter", mode = "lines") %>%
+        add_lines() %>%
+        layout(
+          title = "Lab Plot",  # Title of the plot
+          xaxis = list(title = "Time since treatment"),  # X-axis label
+          yaxis = list(title = "ALT"),  # Y-axis label
+          height = 300, width = 800  # Dimensions of the plot
+        )
+``` 
+## loops {.tabset}
+```{r, echo=FALSE, results='asis'}
+for (subject in adsl$USUBJID[1:5]){
+   cat('\n')  
+   cat("### ", subject, "\n") 
+   ae_info = adae %>% filter(USUBJID==subject)
+   cat("#### Adverse events: ", ae_info$AETERM, "\n") 
+   cat('\n') 
+}
+```
