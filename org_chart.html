@@ -1586,32 +1586,92 @@ display: none;
 </div>
 
 
-<pre class="r"><code>library(DiagrammeR)</code></pre>
-<pre><code>## Warning: package &#39;DiagrammeR&#39; was built under R version 4.3.3</code></pre>
-<pre class="r"><code>grViz(&quot;digraph flowchart {
-      # node definitions with substituted label text
-      node [fontname = Helvetica, shape = rectangle]        
-      tab1 [label = &#39;@@1&#39;]
-      tab2 [label = &#39;@@2&#39;]
-      tab3 [label = &#39;@@3&#39;]
-      tab4 [label = &#39;@@4&#39;]
-      tab5 [label = &#39;@@5&#39;]
-
-      # edge definitions with the node IDs
-      tab1 -&gt; tab2;
-      tab1 -&gt; tab3;
-      tab1 -&gt; tab4;
-      tab1 -&gt; tab5
-      }
-
-      [1]: &#39;CMS India&#39;
-      [2]: &#39;Analytical Programming &amp; Standarads (APS)&#39;
-      [3]: &#39;Data Engeneering(DE)&#39;
-      [4]: &#39;Biostatistics(Bios)&#39;
-      [5]: &#39;PRWE&#39;
-      &quot;)</code></pre>
-<div class="grViz html-widget html-fill-item" id="htmlwidget-f52018fff95a1492fe8e" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-f52018fff95a1492fe8e">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"CMS India\"]\n      tab2 [label = \"Analytical Programming & Standarads (APS)\"]\n      tab3 [label = \"Data Engeneering(DE)\"]\n      tab4 [label = \"Biostatistics(Bios)\"]\n      tab5 [label = \"PRWE\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2;\n      tab1 -> tab3;\n      tab1 -> tab4;\n      tab1 -> tab5\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-abe100093a6bdf3e07c8" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-abe100093a6bdf3e07c8">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"CMS India (PP)\"]\n      tab2 [label = \"Biostatistics (PP)\"]\n      tab3 [label = \"Real World Evidence (PP)\"]\n      tab4 [label = \"Data Science (AC)\"]\n      tab5 [label = \"Admin (Kalyan)\"]\n      tab6 [label = \"Analystical programming & Standards\"]\n      tab7 [label = \"Data Engeneering\"]\n      tab8 [label = \"Systems & Automation\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2;\n      tab1 -> tab3;\n      tab1 -> tab4;\n      tab4 -> tab6;\n      tab4 -> tab7;\n      tab4 -> tab8;\n      tab1 -> tab5\n      }\n\n      ","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="cms-india" class="section level2">
+<h2>CMS India</h2>
+<div id="option-1" class="section level5">
+<h5>option 1</h5>
+<div style="text-align: center;">
+<details>
+<summary>
+Parasar Pal
+</summary>
+Info
+<details>
+<summary>
+Biostatistics
+</summary>
+info
+</details>
+<details>
+<summary>
+Real World Evidence
+</summary>
+info
+</details>
+<details>
+<summary>
+Data Science
+</summary>
+<details>
+<summary>
+Anik Chatterjee
+</summary>
+</details>
+</details>
+</details>
+</div>
+</div>
+<div id="option-2" class="section level5">
+<h5>option 2</h5>
+</div>
+</div>
+<div id="cms-india-1" class="section level2 tabset">
+<h2 class="tabset">CMS India</h2>
+<details>
+<summary>
+Parasar Pal
+</summary>
+Info
+</details>
+<div id="biostatistics" class="section level3">
+<h3>Biostatistics</h3>
+</div>
+<div id="real-world-evidence" class="section level3">
+<h3>Real World Evidence</h3>
+</div>
+<div id="data-science" class="section level3 tabset">
+<h3 class="tabset">Data Science</h3>
+<details>
+<summary>
+Anik Chatterjee
+</summary>
+Info
+</details>
+<div id="analystical-programming-standards" class="section level4">
+<h4>Analystical programming &amp; Standards</h4>
+<details>
+<summary>
+Sujoy
+</summary>
+info
+<details>
+<summary>
+Supraja Gorre
+</summary>
+Info
+</details>
+</details>
+</div>
+<div id="data-engeneering" class="section level4">
+<h4>Data Engeneering</h4>
+</div>
+<div id="systems-automation" class="section level4">
+<h4>Systems &amp; Automation</h4>
+</div>
+</div>
+</div>
 
 
 

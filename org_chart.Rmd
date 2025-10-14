@@ -1,25 +1,75 @@
-```{r}
+```{r echo=FALSE, warning=FALSE}
 library(DiagrammeR)
 grViz("digraph flowchart {
       # node definitions with substituted label text
       node [fontname = Helvetica, shape = rectangle]        
-      tab1 [label = '@@1']
-      tab2 [label = '@@2']
-      tab3 [label = '@@3']
-      tab4 [label = '@@4']
-      tab5 [label = '@@5']
+      tab1 [label = 'CMS India (PP)']
+      tab2 [label = 'Biostatistics (PP)']
+      tab3 [label = 'Real World Evidence (PP)']
+      tab4 [label = 'Data Science (AC)']
+      tab5 [label = 'Admin (Kalyan)']
+      tab6 [label = 'Analystical programming & Standards']
+      tab7 [label = 'Data Engeneering']
+      tab8 [label = 'Systems & Automation']
 
       # edge definitions with the node IDs
       tab1 -> tab2;
       tab1 -> tab3;
       tab1 -> tab4;
+      tab4 -> tab6;
+      tab4 -> tab7;
+      tab4 -> tab8;
       tab1 -> tab5
       }
 
-      [1]: 'CMS India (PP)'
-      [2]: 'DS'
-      [3]: 'Data Engeneering(DE)'
-      [4]: 'Biostatistics(Bios)'
-      [5]: 'PRWE'
       ")
 ```
+## CMS India
+
+##### option 1
+<div style="text-align: center;">
+<details>
+  <summary>Parasar Pal</summary>
+Info
+   <details>
+     <summary> Biostatistics</summary>
+    info
+   </details>
+   <details>
+     <summary> Real World Evidence</summary>
+    info
+   </details>
+  <details>
+    <summary> Data Science</summary>
+    <details>
+    <summary>Anik Chatterjee</summary>
+    </details>
+  </details>
+</details>
+</div>
+
+##### option 2
+## CMS India {.tabset}
+<details>
+  <summary>Parasar Pal</summary>
+Info
+</details> 
+### Biostatistics
+### Real World Evidence
+### Data Science {.tabset}
+<details>
+  <summary>Anik Chatterjee</summary>
+Info
+</details> 
+#### Analystical programming & Standards
+<details>
+<summary>Sujoy</summary>
+info
+<details>
+  <summary>Supraja Gorre</summary>
+Info
+</details>
+</details> 
+#### Data Engeneering
+#### Systems & Automation
+
