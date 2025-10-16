@@ -4,10 +4,11 @@ output:
   html_document:
     theme: united
     toc: true
+    toc_depth: 5
     number_sections: false
     toc_float:
-      collapsed: false
-      smooth_scroll: false
+      collapsed: true
+      smooth_scroll: true
 ---
 
 ```{r echo=FALSE, warning=FALSE}
@@ -39,14 +40,28 @@ grViz("digraph flowchart {
 # About us
  Some text about the team and locations and some team pictures.
  
-## Parasar Pa 
-### Biostatistics
-### Real World Evidence
-### Data Science
-##### Anik
-#### Analystical programming & Standards
-##### Sujoy
-###### Supraja
-#### Data Engeneering
-#### Systems & Automation
+# Parasar Pal 
+## Biostatistics
+## Real World Evidence
+## Data Science
+### Anik
+
+### Analystical programming & Standards  
+
+#### Sujoy   
+info
+
+#### Supraja Gorre   
+
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <p>Associate principal Statistical programmer,Have 9 years of experience . Previously worked with Bayer as Senior Statistical Programmer. In this role, got exposure in therapeutic areas like Cardiovascular, Women's Health, Ophthalmology, Kidney disease. Have expertise in programming languages SAS, R & Python.
+Postgraduate in Statistics from Central university of Hyderabad. Lives in Bangalore. Love cooking & a big foody, balances it out with yoga and exercise. Occupies free time with reading books.</p>
+  </div>
+  <div style="flex: 1;">
+    <img src="supraja.jpg" alt="Supraja" style="max-width: 100%; height: auto;">
+  </div>
+</div>
+### Data Engeneering
+### Systems & Automation
 
