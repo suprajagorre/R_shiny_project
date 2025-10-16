@@ -1,3 +1,15 @@
+---
+title: "CMS India"
+output:
+  html_document:
+    theme: united
+    toc: true
+    number_sections: false
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
 ```{r echo=FALSE, warning=FALSE}
 library(DiagrammeR)
 grViz("digraph flowchart {
@@ -24,52 +36,17 @@ grViz("digraph flowchart {
 
       ")
 ```
-## CMS India
-
-##### option 1
-<div style="text-align: center;">
-<details>
-  <summary>Parasar Pal</summary>
-Info
-   <details>
-     <summary> Biostatistics</summary>
-    info
-   </details>
-   <details>
-     <summary> Real World Evidence</summary>
-    info
-   </details>
-  <details>
-    <summary> Data Science</summary>
-    <details>
-    <summary>Anik Chatterjee</summary>
-    </details>
-  </details>
-</details>
-</div>
-
-##### option 2
-## CMS India {.tabset}
-<details>
-  <summary>Parasar Pal</summary>
-Info
-</details> 
+# About us
+ Some text about the team and locations and some team pictures.
+ 
+## Parasar Pa 
 ### Biostatistics
 ### Real World Evidence
-### Data Science {.tabset}
-<details>
-  <summary>Anik Chatterjee</summary>
-Info
-</details> 
+### Data Science
+##### Anik
 #### Analystical programming & Standards
-<details>
-<summary>Sujoy</summary>
-info
-<details>
-  <summary>Supraja Gorre</summary>
-Info
-</details>
-</details> 
+##### Sujoy
+###### Supraja
 #### Data Engeneering
 #### Systems & Automation
 
