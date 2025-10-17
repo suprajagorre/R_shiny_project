@@ -53,7 +53,7 @@ info
 Postgraduate in Statistics from Central university of Hyderabad. Lives in Bangalore. Love cooking & a big foody, balances it out with yoga and exercise. Occupies free time with reading books.</p>
   </div>
   <div style="flex: 1;">
-    <img src="supraja.jpg" alt="Supraja" style="max-width: 100%; height: auto;">
+    <img src="supraja.jpg" alt="Supraja" style="max-width: 80%; height: auto;">
   </div>
 </div>
 
