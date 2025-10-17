@@ -41,17 +41,11 @@ grViz("digraph flowchart {
  Some text about the team and locations and some team pictures.
  
 # Parasar Pal 
-## Biostatistics
-## Real World Evidence
-## Data Science
-### Anik
-
-### Analystical programming & Standards  
-
-#### Sujoy   
+## Anik
+### Sujoy   
 info
 
-#### Supraja Gorre   
+### Supraja Gorre   
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
@@ -62,6 +56,4 @@ Postgraduate in Statistics from Central university of Hyderabad. Lives in Bangal
     <img src="supraja.jpg" alt="Supraja" style="max-width: 100%; height: auto;">
   </div>
 </div>
-### Data Engeneering
-### Systems & Automation
 
